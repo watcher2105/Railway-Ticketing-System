@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Ticketing System - Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>Railway Ticketing System</h1>
+                    <p>Booking Confirmation</p>
+                </div>
+                <div class="header-right">
+                    <span id="userInfo" class="user-info"></span>
+                    <button id="logoutBtn" class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="confirmation-section">
+            <div class="success-message">
+                <div class="success-icon">✓</div>
+                <h2>Booking Successful!</h2>
+                <p>Your ticket has been booked successfully</p>
+            </div>
+
+            <div class="booking-details" id="bookingDetails">
+                <h3>Booking Details</h3>
+                <div id="confirmationInfo"></div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="window.print()">Print Ticket</button>
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Book Another Ticket</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "railway-ticketing-system",
+  "version": "1.0.0",
+  "description": "Railway Ticketing System with Node.js backend and user authentication",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["railway", "ticketing", "booking", "authentication"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.15.3",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

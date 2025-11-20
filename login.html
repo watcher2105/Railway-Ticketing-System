@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Ticketing System - Login/Signup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1>Railway Ticketing System</h1>
+            <p class="tagline">Your journey begins here</p>
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showLogin()">Login</button>
+                <button class="tab-btn" onclick="showSignup()">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <h2>Welcome Back</h2>
+                <div class="form-group">
+                    <label for="login_username">Username</label>
+                    <input type="text" id="login_username" name="username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login_password">Password</label>
+                    <input type="password" id="login_password" name="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <p class="form-footer">Don't have an account? <a href="#" onclick="showSignup(); return false;">Sign up here</a></p>
+            </form>
+            
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form" style="display: none;">
+                <h2>Create Account</h2>
+                <div class="form-group">
+                    <label for="signup_fullname">Full Name</label>
+                    <input type="text" id="signup_fullname" name="full_name" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup_username">Username</label>
+                    <input type="text" id="signup_username" name="username" placeholder="Choose username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup_email">Email</label>
+                    <input type="email" id="signup_email" name="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup_phone">Phone Number</label>
+                    <input type="tel" id="signup_phone" name="phone" placeholder="Enter phone number (optional)">
+                </div>
+                <div class="form-group">
+                    <label for="signup_password">Password</label>
+                    <input type="password" id="signup_password" name="password" placeholder="Create password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="signup_confirm_password">Confirm Password</label>
+                    <input type="password" id="signup_confirm_password" name="confirm_password" placeholder="Confirm password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                <p class="form-footer">Already have an account? <a href="#" onclick="showLogin(); return false;">Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
