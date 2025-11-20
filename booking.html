@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Ticketing System - Booking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>Railway Ticketing System</h1>
+                    <p>Complete your booking</p>
+                </div>
+                <div class="header-right">
+                    <span id="userInfo" class="user-info"></span>
+                    <button id="logoutBtn" class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="booking-section">
+            <div class="train-details" id="trainDetails">
+                <h2>Train Details</h2>
+                <div id="selectedTrain"></div>
+            </div>
+
+            <div class="passenger-form">
+                <h2>Passenger Information</h2>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="passenger_name">Passenger Name</label>
+                        <input type="text" id="passenger_name" name="passenger_name" placeholder="Enter full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passenger_email">Email</label>
+                        <input type="email" id="passenger_email" name="passenger_email" placeholder="Enter email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="seats_booked">Number of Seats</label>
+                        <input type="number" id="seats_booked" name="seats_booked" min="1" max="6" placeholder="Enter number of seats" required>
+                    </div>
+                    <div id="availability" class="availability-info"></div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Back to Search</button>
+                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

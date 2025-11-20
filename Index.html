@@ -1,21 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Basic HTML Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Ticketing System - Search Trains</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to the basic HTML page</h1>
-    </header>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>Railway Ticketing System</h1>
+                    <p>Book your train tickets online</p>
+                </div>
+                <div class="header-right">
+                    <span id="userInfo" class="user-info"></span>
+                    <button id="logoutBtn" class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
 
-    <main>
-        <p>This is a minimal starting template. Edit this file to add your content.</p>
-    </main>
+        <div class="search-section">
+            <h2>Search Trains</h2>
+            <form id="searchForm">
+                <div class="form-group">
+                    <label for="source">From (Source)</label>
+                    <input type="text" id="source" name="source" placeholder="Enter source station" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">To (Destination)</label>
+                    <input type="text" id="destination" name="destination" placeholder="Enter destination station" required>
+                </div>
+                <div class="form-group">
+                    <label for="travel_date">Travel Date</label>
+                    <input type="date" id="travel_date" name="travel_date" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Search Trains</button>
+            </form>
+        </div>
 
-    <footer>
-        <p>&copy; 2025</p>
-    </footer>
+        <div id="results" class="results-section" style="display: none;">
+            <h2>Available Trains</h2>
+            <div id="trainsList"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
