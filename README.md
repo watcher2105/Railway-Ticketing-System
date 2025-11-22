@@ -23,18 +23,6 @@ A comprehensive web-based railway ticketing system built with HTML, CSS, JavaScr
 - **Booking Confirmation**: Detailed confirmation page with all booking details
 - **Booking History**: View all your past and upcoming bookings
 
-### Routes Covered
-1. New Delhi → Mumbai
-2. New Delhi → Chandigarh
-3. Mumbai → Kolkata
-4. Chennai → Bangalore
-5. Kolkata → New Delhi
-6. Bangalore → Hyderabad
-7. Delhi → Jaipur
-8. Mumbai → Pune
-9. Chennai → Hyderabad
-10. Ahmedabad → Mumbai
-
 ## 🛠️ Technology Stack
 
 ### Frontend
@@ -62,6 +50,84 @@ A comprehensive web-based railway ticketing system built with HTML, CSS, JavaScr
 - MySQL Server (v5.7 or higher)
 - npm (comes with Node.js)
 - Web browser (Chrome, Firefox, Edge, etc.)
+
+## 🚀 Getting Started
+
+Follow these steps to run the project locally:
+
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/watcher2105/Railway-Ticketing-System.git
+cd Railway-Ticketing-System
+```
+
+### Step 2: Install Dependencies
+```bash
+npm install
+```
+
+### Step 3: Set Up MySQL Database
+1. Start your MySQL server
+2. Open MySQL command line or MySQL Workbench
+3. Create the database:
+```sql
+CREATE DATABASE railway_ticketing_system;
+```
+4. Import the database schema and sample data:
+```bash
+mysql -u root -p railway_ticketing_system < railway.sql
+```
+Or if using MySQL Workbench:
+- Open `railway.sql` file
+- Execute the script
+
+### Step 4: Configure Environment Variables
+1. Copy the example environment file:
+```bash
+cp .env.example .env
+```
+2. Open `.env` file and update with your MySQL credentials:
+```env
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=railway_ticketing_system
+PORT=3000
+```
+
+### Step 5: Start the Server
+```bash
+npm start
+```
+Or for development with auto-restart:
+```bash
+npm run dev
+```
+
+You should see:
+```
+Server is running on http://localhost:3000
+API endpoints available at http://localhost:3000/api/
+Connected to MySQL database
+```
+
+### Step 6: Open the Application
+Open your web browser and navigate to:
+```
+http://localhost:3000/login.html
+```
+
+### Step 7: Create an Account
+1. Click on "Sign Up" tab
+2. Fill in your details (username, email, password, full name, phone)
+3. Click "Sign Up"
+4. Login with your credentials
+
+### Step 8: Start Booking!
+- Search for trains by entering source and destination
+- Select a train and book tickets
+- View your booking history
 
 
 ## 📁 Project Structure
@@ -149,20 +215,6 @@ Backend queries bookings JOIN trains
 Display all user bookings with status
 ```
 
-## 🔌 API Endpoints
-
-### Authentication
-- **POST** `/api/signup` - Register new user
-- **POST** `/api/login` - User login
-
-### Trains
-- **GET** `/api/search-trains?source=X&destination=Y` - Search trains
-- **GET** `/api/check-availability?train_id=X&travel_date=Y` - Check seats
-
-### Bookings
-- **POST** `/api/book-ticket` - Create new booking
-- **GET** `/api/user-bookings/:user_id` - Get user's bookings
-
 ## 🗄️ Database Schema
 
 ### users
@@ -222,90 +274,9 @@ Display all user bookings with status
 - **Form Validation**: Client-side and server-side validation
 - **Loading States**: User feedback during API calls
 
-## 🚀 Deployment
-
-### Netlify Deployment
-
-This application can be deployed on Netlify with the following considerations:
-
-#### Prerequisites
-- Netlify account
-- MySQL database hosting service (e.g., PlanetScale, Railway, AWS RDS, or any cloud MySQL provider)
-
-#### Steps to Deploy
-
-1. **Prepare Backend for Deployment**
-   - Update `.env` file with production database credentials
-   - Consider deploying backend separately on services like:
-     - **Heroku**: For Node.js backend
-     - **Railway**: For full-stack deployment
-     - **Render**: For backend API
-     - **AWS EC2/Elastic Beanstalk**: For scalable deployment
-
-2. **Update API Base URL**
-   - In `script.js`, update `API_BASE_URL` to your deployed backend URL:
-   ```javascript
-   const API_BASE_URL = 'https://your-backend-url.com/api';
-   ```
-
-3. **Deploy Frontend to Netlify**
-   - Connect your GitHub repository to Netlify
-   - Set build command: (leave empty for static files)
-   - Set publish directory: `/` (root directory)
-   - Deploy the site
-
-4. **Environment Variables**
-   - For backend deployment, set environment variables in your hosting platform
-   - Ensure all variables from `.env` are configured
-
-5. **Database Setup**
-   - Host MySQL database on cloud provider
-   - Import `railway.sql` schema and data
-   - Update backend `.env` with production database credentials
-
-#### Recommended Deployment Architecture
-```
-Frontend (Netlify) → Backend API (Heroku/Railway/Render) → MySQL Database (PlanetScale/AWS RDS)
-```
-
-#### Alternative: Full-Stack Deployment
-For easier deployment, consider using platforms that support both frontend and backend:
-- **Railway**: Deploy entire Node.js application
-- **Render**: Free tier with PostgreSQL/MySQL support
-- **Vercel**: Deploy with serverless functions
-
-**Note**: Since this is a Node.js backend application, Netlify alone won't suffice. You need separate backend hosting or use Netlify Functions to convert the Express API to serverless functions.
-
-## 🐛 Troubleshooting
-
-### Server won't start
-- Check if MySQL is running
-- Verify credentials in `.env`
-- Ensure port 3000 is not in use
-
-### Database connection failed
-- Check MySQL service status
-- Verify DB_HOST (use `127.0.0.1` instead of `localhost` if issues)
-- Confirm database exists and user has permissions
-
-### No trains showing
-- Verify railway.sql was imported correctly
-- Check browser console for errors
-- Ensure server is running on port 3000
-
-### Booking fails
-- Check available seats before booking
-- Verify user is logged in (check sessionStorage)
-- Check server logs for errors
-
 ## 📄 License
 
 This project is licensed under the MIT License.
 
-## 📧 Contact
-
-For questions or support, please open an issue on GitHub.
-
----
 
 **Happy Journey! 🚂**
