@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         initBookingPage();
     } else if (currentPage === 'confirm.html') {
         initConfirmPage();
+    } else if (currentPage === 'bookings.html') {
+        initBookingsPage();
     }
 });
 
@@ -343,4 +345,83 @@ function displayConfirmation(data) {
             </div>
         </div>
     `;
+}
+
+async function initBookingsPage() {
+    if (!currentUser) {
+        window.location.href = 'login.html';
+        return;
+    }
+    
+    const loadingDiv = document.getElementById('loadingMessage');
+    const bookingsListDiv = document.getElementById('bookingsList');
+    
+    try {
+        loadingDiv.style.display = 'block';
+        
+        const response = await fetch(`${API_BASE_URL}/user-bookings/${currentUser.id}`);
+        const bookings = await response.json();
+        
+        loadingDiv.style.display = 'none';
+        
+        if (bookings.length === 0) {
+            bookingsListDiv.innerHTML = '<div class="no-bookings">No bookings found. <a href="Index.html">Search for trains</a></div>';
+            return;
+        }
+        
+        bookingsListDiv.innerHTML = bookings.map(booking => `
+            <div class="booking-card">
+                <div class="booking-header">
+                    <h3>${booking.train_name} (${booking.train_number})</h3>
+                    <span class="booking-status ${booking.booking_status.toLowerCase()}">${booking.booking_status}</span>
+                </div>
+                <div class="booking-details">
+                    <div class="detail-row">
+                        <div class="detail-item">
+                            <label>PNR:</label>
+                            <strong>${booking.pnr}</strong>
+                        </div>
+                        <div class="detail-item">
+                            <label>Booking Date:</label>
+                            <span>${new Date(booking.booking_date).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-item">
+                            <label>Route:</label>
+                            <span>${booking.source} → ${booking.destination}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Travel Date:</label>
+                            <span>${new Date(booking.travel_date).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-item">
+                            <label>Timing:</label>
+                            <span>${formatTime(booking.departure_time)} - ${formatTime(booking.arrival_time)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Seats:</label>
+                            <span>${booking.seats_booked}</span>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-item">
+                            <label>Passenger:</label>
+                            <span>${booking.passenger_name}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Total Fare:</label>
+                            <strong>₹${booking.total_fare}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        
+    } catch (error) {
+        console.error('Error fetching bookings:', error);
+        loadingDiv.innerHTML = '<div class="error">Error loading bookings. Please try again.</div>';
+    }
 }

@@ -98,6 +98,46 @@ app.post('/api/login', (req, res) => {
     });
 });
 
+// Get User Bookings
+app.get('/api/user-bookings/:user_id', (req, res) => {
+    const userId = req.params.user_id;
+    
+    if (!userId) {
+        return res.status(400).json({ error: 'User ID is required' });
+    }
+    
+    const query = `
+        SELECT 
+            b.id, 
+            b.pnr, 
+            b.passenger_name, 
+            b.passenger_email, 
+            b.travel_date, 
+            b.seats_booked, 
+            b.total_fare, 
+            b.booking_status,
+            b.booking_date,
+            t.train_number,
+            t.train_name, 
+            t.source, 
+            t.destination, 
+            t.departure_time, 
+            t.arrival_time
+        FROM bookings b
+        JOIN trains t ON b.train_id = t.id
+        WHERE b.user_id = ?
+        ORDER BY b.booking_date DESC
+    `;
+    
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching bookings:', err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+        res.json(results);
+    });
+});
+
 app.get('/api/search-trains', (req, res) => {
     const { source, destination } = req.query;
     
