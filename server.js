@@ -3,23 +3,24 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
+require('dotenv').config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 const db = mysql.createPool({
-    host: '127.0.0.1',
-    port: 3306,
-    user: 'root',
-    password: 'yourpassword',
-    database: 'railway_ticketing_system',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+    connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT) || 10,
+    queueLimit: parseInt(process.env.DB_QUEUE_LIMIT) || 0
 });
 
 db.getConnection((err, connection) => {
